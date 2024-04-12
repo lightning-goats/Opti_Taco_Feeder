@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opti Taco Feeder</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:," type="image/x-icon">
+    <style>
+        #container {
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: auto;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #DDDDDD;
+        }
+        #qr-code-container {
+            position: absolute;
+            width: 120px; /* Set the width to match the qr-code width */
+            height: 120px; /* Set the height to match the qr-code height */
+            bottom: 0;
+            left: 900px;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+        #qr-code {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+        }
+        #sats_left {
+            position: absolute; /* Position the sats_left element */
+            bottom: 0; /* Align to the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            font-size: 10px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 2px;
+            margin-bottom: 10px;
+      }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="qr-code-container">
+        <div id="qr-code">
+            <img id="qr-img" src="" width='120' height='120'">
+            <img id="lightning-img" src="" width='120' height='120' style=" display: none;">
+        </div>
+        <div id="sats_left"></div>
+    </div>
+</div>
+
+<script>
+    const wallet = "07bb80d2d29040b3a428a6e33de15c40"; // wallet id from lnbits
+    const LNURL = "LNURL1DP68GURN8GHJ7MR9VAJKUEPWD3HXY6T5WVHXXMMD9AKXUATJD3CZ7EJTVFHXZSSSK3096";  // lnurl from lnbits lnulp extension
+    const server = "legend.lnbits.com";  // could also use lnb.bolverker.com if your wallet is there (any public lnbits url)
+    const christine = 666;  // legarde limit in sats
+
+    let balance = 0;
+    let ws;
+    const WS_URL = `wss://${server}/api/v1/ws/${wallet}`;
+    let reconnectInterval = 30000;
+
+    function updateSatsLeftElem(receivedAmount, toggle) {
+        const satsLeftElem = document.getElementById('sats_left');
+        if (toggle) {
+            satsLeftElem.innerText = `${receivedAmount} sats received`;
+        } else {
+            satsLeftElem.innerText = ``;
+        }
+    }
+
+    function initWebSocket() {
+        ws = new WebSocket(WS_URL);
+
+        ws.addEventListener('open', function() {
+            console.log("WebSocket is open now.");
+        });
+
+        ws.addEventListener('close', function() {
+            console.log("WebSocket is closed now.");
+            setTimeout(initWebSocket, reconnectInterval);
+        });
+
+        ws.addEventListener('error', function(error) {
+            console.log("WebSocket Error: " + error);
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.close();
+            }
+        });
+
+        ws.addEventListener('message', function(event) {
+          const data = JSON.parse(event.data);
+
+          if (data.wallet_balance !== undefined) {
+              balance = data.wallet_balance;
+              const receivedAmount = data.payment.amount / 1000;
+
+              // Toggle the QR code to lightning image
+              if (receivedAmount > 0) {
+                  updateSatsLeftElem(receivedAmount, true);
+                  const qrCode = document.querySelector('#qr-code img:first-child');
+                  const lightningImg = document.getElementById('lightning-img');
+                  qrCode.style.display = 'none';
+            
+                  if (receivedAmount == christine) { // Let him who hath understanding...
+                      lightningImg.src = './legarde.jpg'; // Display legard.jpg
+                  } else {
+                      lightningImg.src = './taco.jpg'; // Display taco.jpg 
+                  }
+
+                lightningImg.style.display = 'block';
+                  setTimeout(() => {
+                  updateSatsLeftElem(receivedAmount, false);
+                  qrCode.style.display = 'block';
+                  lightningImg.style.display = 'none';
+                }, 2000);
+              }
+          }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('qr-img').src = `https://${server}/api/v1/qrcode/${LNURL}`;  
+      initWebSocket();
+    });
+</script>
+
+</body>
+</html>
+
