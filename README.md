@@ -1,5 +1,7 @@
 # Opti Taco Feeder
 
+Try this at: https://lightning-goats.github.io/Opti_Taco_Feeder/
+
 This HTML file is a template for an Obs-Studio overlay that interacts with the Lightning Network through LNBits, allowing for Lightning payments to be received and displayed dynamically on the page.
 
 ## Features
