@@ -21,7 +21,7 @@ This HTML file is a template for an Obs-Studio overlay that interacts with the L
 ## Usage
 
 - Open the HTML file as an overlay in your video broadcast software. Ex: Obs-Studio.
-- Display the QR code for Lightning payments by scanning the QR code displayed in the `#qr-code` container with a Lightning wallet.
+- Users feed Opti tacos by scanning the QR code displayed in the `#qr-code` container with a Lightning wallet.
 
 ## Note
 
