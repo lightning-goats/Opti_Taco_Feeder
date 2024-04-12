@@ -14,7 +14,7 @@ This HTML file is a template for an Obs-Studio overlay that interacts with the L
 ## Setup
 
 1. Set the `wallet` variable to your LNBits wallet ID.
-2. Set the `LNURL` variable to your LNURL from LNBits LNULP extension.
+2. Set the `LNURL` variable to your LNURL from LNBits LNURLP extension.
 3. Set the `server` variable to your LNBits server URL (`legend.lnbits.com` by default).
 4. Set the `christine` variable to your desired limit in sats.  (Easter Egg)
 
