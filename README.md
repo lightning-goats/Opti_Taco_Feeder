@@ -23,7 +23,3 @@ This HTML file is a template for an Obs-Studio overlay that interacts with the L
 - Open the HTML file as an overlay in your video broadcast software. Ex: Obs-Studio.
 - Users feed Opti tacos by scanning the QR code displayed in the `#qr-code` container with a Lightning wallet.
 
-## Note
-
-- The page is designed to work with an LNBits install.
-
