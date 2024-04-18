@@ -4,8 +4,7 @@ This HTML file is a template for an Obs-Studio overlay that interacts with the L
 
 ## Features
 
-- Displays a container (`#container`) with a fixed size of 1280px by 720px, positioned in the center of the screen.
-- Includes a QR code container (`#qr-code-container`) at the bottom left of the container, with a fixed size of 120px by 120px, for displaying QR codes related to Lightning payments.
+- Displays a QR code container (`#qr-code-container`) with a fixed size of 120px by 120px for displaying QR codes related to feeding Opti.
 - Shows the amount of received sats (`#sats_left`) at the bottom center of the container.
 - Utilizes WebSocket to listen for updates on received payments and dynamically updates the UI accordingly.
 
@@ -13,15 +12,10 @@ This HTML file is a template for an Obs-Studio overlay that interacts with the L
 
 1. Set the `wallet` variable to your LNBits wallet ID.
 2. Set the `LNURL` variable to your LNURL from LNBits LNULP extension.
-3. Set the `server` variable to your LNBits server URL (`legend.lnbits.com` by default).
+3. Set the `server` variable to your LNBits server URL (ex: `legend.lnbits.com`).
 4. Set the `christine` variable to your desired limit in sats.  (Easter Egg)
 
 ## Usage
 
 - Open the HTML file as an overlay in your video broadcast software. Ex: Obs-Studio.
 - Display the QR code for Lightning payments by scanning the QR code displayed in the `#qr-code` container with a Lightning wallet.
-
-## Note
-
-- The page is designed to work with an LNBits install.
-
