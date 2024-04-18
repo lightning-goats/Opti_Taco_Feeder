@@ -2,6 +2,8 @@
 
 This HTML file is a template for an Obs-Studio overlay that interacts with the Lightning Network through LNBits, allowing for Lightning payments to be received and displayed dynamically on the page.
 
+Try this at: https://lightning-goats.github.io/Opti_Taco_Feeder/
+
 ## Features
 
 - Displays a QR code container (`#qr-code-container`) with a fixed size of 120px by 120px for displaying QR codes related to feeding Opti.
