@@ -5,22 +5,12 @@
     <meta charset="UTF-8">
     <link rel="icon" href="data:," type="image/x-icon">
     <style>
-        #container {
-            position: absolute;
-            width: 1280px;
-            height: 720px;
-            margin: auto;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            border-radius: 12px;
-        }
         #qr-code-container {
             position: absolute;
             width: 120px; /* Set the width to match the qr-code width */
             height: 120px; /* Set the height to match the qr-code height */
-            bottom: 0;
-            left: 900px;
+            top: 0;
+            left: 0;
             background-color: rgba(255, 255, 255, 1);
             border-radius: 10px;
             margin-bottom: 10px;
@@ -48,8 +38,6 @@
     </style>
 </head>
 <body>
-
-<div id="container">
     <div id="qr-code-container">
         <div id="qr-code">
             <img id="qr-img" src="" width='120' height='120'">
@@ -57,12 +45,11 @@
         </div>
         <div id="sats_left"></div>
     </div>
-</div>
 
 <script>
-    const wallet = "07bb80d2d29040b3a428a6e33de15c40"; // wallet id from lnbits
-    const LNURL = "LNURL1DP68GURN8GHJ7MR9VAJKUEPWD3HXY6T5WVHXXMMD9AKXUATJD3CZ7EJTVFHXZSSSK3096";  // lnurl from lnbits lnulp extension
-    const server = "legend.lnbits.com";  // could also use lnb.bolverker.com if your wallet is there (any public lnbits url)
+    const wallet = "4e74146c232f4aa8a8959080026f159e"; // wallet id from lnbits
+    const LNURL = "LNURL1DP68GURN8GHJ7MRWVGHXYMMVWEJHY6M9WGHXXMMD9AKXUATJD3CZ75MRTQUK5JS5AL0DY";  // lnurl from lnbits lnulp extension
+    const server = "lnb.bolverker.com";  // could also use legend.lnbits.com if your wallet is there (any public lnbits url)
     const christine = 666;  // legarde limit in sats
 
     let balance = 0;
@@ -137,4 +124,3 @@
 
 </body>
 </html>
-
