@@ -20,4 +20,3 @@ Try this at: https://lightning-goats.github.io/Opti_Taco_Feeder/
 ## Usage
 
 - Open the HTML file as an overlay in your video broadcast software. Ex: Obs-Studio.
-- Display the QR code for Lightning payments by scanning the QR code displayed in the `#qr-code` container with a Lightning wallet.
